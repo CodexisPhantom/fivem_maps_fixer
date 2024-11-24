@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <PackageId>FivemMapsFixer</PackageId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <AvaloniaResource Include="Assets\**"/>
+    </ItemGroup>
+
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.0.2"/>
+        <PackageReference Include="Avalonia.Desktop" Version="11.0.2"/>
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.2"/>
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.2"/>
+        <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.2"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
+        <PackageReference Include="Costura.Fody" Version="6.0.0-beta0000">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Magick.NET-Q8-AnyCPU" Version="14.2.0" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <ProjectReference Include="..\CodeWalker.Core\CodeWalker.Core.csproj" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <Compile Update="Views\Pages\RestoreBackupPageView.axaml.cs">
+        <DependentUpon>RestoreBackupPageView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Pages\MainPageView.axaml.cs">
+        <DependentUpon>MainPageView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Pages\CleanPages\CleanEntitiesPageView.axaml.cs">
+        <DependentUpon>CleanEntitiesPageView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Pages\CleanPages\CleanLodLightsPageView.axaml.cs">
+        <DependentUpon>CleanLodLightsPageView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Pages\CleanPages\CleanOcclusionsPageView.axaml.cs">
+        <DependentUpon>CleanOcclusionsPageView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Pages\CleanYmapsPages\ChooseYmapsFixPageView.axaml.cs">
+        <DependentUpon>FixPageView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Pages\ShowDuplicatePageView.axaml.cs">
+        <DependentUpon>ChooseYmapsFixPageView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Pages\Ytd\CleanYtdPageView.axaml.cs">
+        <DependentUpon>CleanOcclusionsPageView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Assets\Tests\principal.ymap.xml" />
+      <UpToDateCheckInput Remove="Assets\Tests\secondary.ymap.xml" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,120 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:cleanPages="clr-namespace:FivemMapsFixer.ViewModels.Pages.Ymaps"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FivemMapsFixer.Views.Pages.Ymaps.CleanOcclusionsPageView"
+             x:DataType="cleanPages:CleanOcclusionsPageViewModel">
+    <Grid
+        ColumnDefinitions="*,10,*"
+        RowDefinitions="Auto,10,*,10,Auto,10,Auto"
+        Margin="5">
+       
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="0">Box occlusions to remove</TextBlock>
+        
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="2">Models occlusions to remove</TextBlock>
+        
+        <Border
+            Grid.Row="2"
+            Grid.Column="0"
+            Padding="5"
+            BorderBrush="White"
+            BorderThickness="2"
+            CornerRadius="4"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+            <ScrollViewer
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+            <ItemsControl ItemsSource="{Binding Issue.BoxOcclusionsToRemove}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            Margin="0,5,0,0"
+                            Padding="2"
+                            BorderBrush="White"
+                            BorderThickness="2"
+                            CornerRadius="4"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch">
+                            <TextBlock
+                                Text="{Binding Position}"></TextBlock>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="Black" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+        </Border>
+        
+        <Border
+            Grid.Row="2"
+            Grid.Column="2"
+            Padding="5"
+            BorderBrush="White"
+            BorderThickness="2"
+            CornerRadius="4"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+            <ScrollViewer
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+            <ItemsControl ItemsSource="{Binding Issue.ModelOcclusionsToRemove}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            Margin="0,5,0,0"
+                            Padding="2"
+                            BorderBrush="White"
+                            BorderThickness="2"
+                            CornerRadius="4"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch">
+                            <TextBlock
+                                Text="{Binding Index}"></TextBlock>
+                                
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="Black" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+        </Border>
+        
+        <Button
+            Grid.Row="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            HorizontalContentAlignment="Center"
+            Command="{Binding Next}">Fix</Button>
+        <Button
+            Grid.Row="6"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            HorizontalContentAlignment="Center"
+            Command="{Binding ChangeToMainPage}">Go back</Button>
+    </Grid>
+</UserControl>

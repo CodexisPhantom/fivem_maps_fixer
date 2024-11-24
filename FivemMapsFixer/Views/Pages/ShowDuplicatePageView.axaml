@@ -1,0 +1,53 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pages="clr-namespace:FivemMapsFixer.ViewModels.Pages"
+             xmlns:controls="clr-namespace:FivemMapsFixer.Controls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FivemMapsFixer.Views.Pages.ShowDuplicatePageView"
+             x:DataType="pages:ShowDuplicatePageViewModel">
+  <Grid
+        Margin="4"
+        ColumnDefinitions="*,10,*"
+        RowDefinitions="Auto,10,*">
+        <Button
+            Grid.Row="0"
+            Grid.Column="0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            HorizontalContentAlignment="Center"
+            Command="{Binding FindIssues}">Find</Button>
+        <Button
+            Grid.Row="0"
+            Grid.Column="2"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            HorizontalContentAlignment="Center"
+            Command="{Binding ChangeToMainPage}">Back</Button>
+        <ScrollViewer
+            Grid.Row="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+            <ItemsControl ItemsSource="{Binding Conflicts}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <controls:IssuePreview
+                            FileType="{Binding Type}"
+                            Issue="{Binding}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="Black" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

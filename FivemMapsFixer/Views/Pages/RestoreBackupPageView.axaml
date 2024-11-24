@@ -1,0 +1,73 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pages="clr-namespace:FivemMapsFixer.ViewModels.Pages"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="pages:RestoreBackupPageViewModel"
+             x:Class="FivemMapsFixer.Views.Pages.RestoreBackupPageView">
+    <Grid
+        ColumnDefinitions="*,10,*"
+        RowDefinitions="Auto,10,*">
+        <Button
+            Grid.Row="0"
+            Grid.Column="0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            HorizontalContentAlignment="Center"
+            Command="{Binding FindBackups}">Find</Button>
+        <Button
+            Grid.Row="0"
+            Grid.Column="2"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            HorizontalContentAlignment="Center"
+            Command="{Binding ChangeToMainPage}">Back</Button>
+        <ScrollViewer
+            Grid.Row="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+            <ItemsControl ItemsSource="{Binding Backups}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            Margin="0,5,0,0"
+                            Padding="2"
+                            BorderBrush="White"
+                            BorderThickness="2"
+                            CornerRadius="4"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch">
+                            <Grid
+                                Margin="5"
+                                ColumnDefinitions="*,10,Auto">
+                                <ListBox
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    SelectionMode="Single"
+                                    ItemsSource="{Binding YmapFilesPath}" />
+                                <Button
+                                    Grid.Column="2"
+                                    Foreground="Black"
+                                    Background="Chartreuse"
+                                    Command="{Binding RestoreBackup}">Restore Backup</Button>
+                            </Grid>
+                                
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="Black" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

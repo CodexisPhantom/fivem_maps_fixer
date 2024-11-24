@@ -1,0 +1,63 @@
+
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pages="clr-namespace:FivemMapsFixer.ViewModels.Pages"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FivemMapsFixer.Views.Pages.MainPageView"
+             x:DataType="pages:MainPageViewModel">
+    <Grid
+        Margin="15"
+        RowDefinitions="*,10,*,10,Auto"
+        ColumnDefinitions="*">
+        <StackPanel
+            Grid.Row="0"
+            Orientation="Horizontal"
+            FlowDirection="LeftToRight"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <Button 
+                Width="200"
+                Height="150"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Command="{Binding ChangeToFixPage}"
+                CommandParameter="{Binding Ymaps}">
+                FIX YMAPs
+            </Button>
+            <Button 
+                Width="200"
+                Height="150"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Command="{Binding ChangeToFixPage}"
+                CommandParameter="{Binding Ymts}">
+                FIX Ytds
+            </Button>
+            <Button 
+                Width="200"
+                Height="150"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Command="{Binding ChangeToFixPage}"
+                CommandParameter="{Binding Ytds}">
+                FIX Ytds
+            </Button>
+        </StackPanel>
+        <Button
+            Grid.Row="2"
+            Width="200"
+            Height="150"
+            HorizontalAlignment="Stretch"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Command="{Binding ChangeToRestoreBackupPage}">
+            Restore Backups
+        </Button>
+        <TextBox
+            Grid.Row="4"
+            Grid.Column="0"
+            Text="{Binding Path}" />
+    </Grid>
+</UserControl>
