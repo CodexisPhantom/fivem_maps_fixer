@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using CodeWalker.GameFiles;
 using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -29,19 +30,16 @@ public partial class YmapsEntitiesToFix:ObservableObject
     
     public void LoadName()
     {
-        FormUrlEncodedContent formContent = new([new KeyValuePair<string, string>("input", _hash)]);
+        StringContent content = new StringContent("[" + _hash + "]", Encoding.UTF8, "text/plain");
         try
         {
-            HttpResponseMessage response = Client.PostAsync(Settings.ApiNameUrl, formContent).Result;
+            HttpResponseMessage response = Client.PostAsync(Settings.ApiNameUrl, content).Result;
             response.EnsureSuccessStatusCode();
             string responseBody = response.Content.ReadAsStringAsync().Result;
             responseBody = responseBody[11..];
             responseBody = responseBody.Remove(responseBody.Length - 2);
             string name = responseBody;
-            if (name == "-")
-            {
-                name = _hash;
-            }
+            if (name == "-") name = _hash;
             EntityName = name;
         }
         catch
