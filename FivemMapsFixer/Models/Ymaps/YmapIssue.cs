@@ -95,6 +95,10 @@ public partial class YmapIssue:Issue
           Files[0] = YmapOcclusionsActions.RemoveModelOcclusions(Files[0],ModelOcclusionsToRemove.ToList());
           Globals.InvokeOcclusionsPage(this,this);
      }
-
-
+     
+     public void FixLodLightsConflicts()
+     {
+           ObservableCollection<GameFile> ymaps  = new(YmapLodLightActions.CleanDistLodLight(new ObservableCollection<YmapFile>(Files.Select(e => (YmapFile)e)),YmapFilesPath.ToArray()));
+           Files = ymaps;
+     }
 }

@@ -11,6 +11,7 @@ public partial class CleanLodLightsPageViewModel(YmapIssue ymapIssue) : CleanPag
     
     public override void Next()
     {
+        Issue.FixLodLightsConflicts();
         Issue.SavePrincipal();
         Globals.InvokeFixPage(this, FileType.Ymap);
     }
