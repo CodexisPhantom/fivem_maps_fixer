@@ -73,8 +73,7 @@ namespace CodeWalker.GameFiles
 
         public CVehicleModelInfoVariation(XmlNode node)
         {
-            XmlNode cnode;
-            cnode = node.SelectSingleNode("variationData");
+            var cnode = node.SelectSingleNode("variationData");
             if (cnode != null)
             {
                 XmlNodeList items = cnode.SelectNodes("Item");
@@ -102,8 +101,7 @@ namespace CodeWalker.GameFiles
         public CVehicleModelInfoVariation_418053801(XmlNode node)
         {
             modelName = Xml.GetChildInnerText(node, "modelName");
-            XmlNode cnode;
-            cnode = node.SelectSingleNode("colors");
+            var cnode = node.SelectSingleNode("colors");
             if (cnode != null)
             {
                 XmlNodeList items = cnode.SelectNodes("Item");
@@ -163,8 +161,7 @@ namespace CodeWalker.GameFiles
 
         public CVehicleModelInfoVariation_2575850962(XmlNode node)
         {
-            XmlNode cnode;
-            cnode = node.SelectSingleNode("indices");
+            var cnode = node.SelectSingleNode("indices");
             if (cnode != null)
             {
                 string astr = cnode.InnerText;
@@ -220,8 +217,7 @@ namespace CodeWalker.GameFiles
 
         public PlateProbabilities(XmlNode node)
         {
-            XmlNode cnode;
-            cnode = node.SelectSingleNode("Probabilities");
+            var cnode = node.SelectSingleNode("Probabilities");
             if (cnode != null)
             {
                 XmlNodeList items = cnode.SelectNodes("Item");

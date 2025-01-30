@@ -43,7 +43,7 @@ namespace CodeWalker.World
                 filename = "update\\update.rpf\\common\\data\\levels\\gta5\\popzone.ipl";
             }
 
-            string ipltext = rpfman.GetFileUTF8Text(filename);
+            string ipltext = rpfman.GetFileUtf8Text(filename);
 
             if (string.IsNullOrEmpty(ipltext))
             {

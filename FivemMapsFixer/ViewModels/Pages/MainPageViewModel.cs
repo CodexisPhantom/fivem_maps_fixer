@@ -7,19 +7,23 @@ namespace FivemMapsFixer.ViewModels.Pages;
 public partial class MainPageViewModel:PageViewModel
 {
     [ObservableProperty] private string _path = Settings.Path;
+    [ObservableProperty] private string _gtapath = Settings.GTAPath;
     [ObservableProperty] private FileType _ymaps = FileType.Ymap;
-    [ObservableProperty] private FileType _ydrs = FileType.Ydr;
-    [ObservableProperty] private FileType _ybns = FileType.Ybn;
-    [ObservableProperty] private FileType _ymts = FileType.Ymt;
-    [ObservableProperty] private FileType _ytds = FileType.Ytd;
     
 
     public MainPageViewModel()
     {
         PropertyChanged += (_, e) =>
         {
-            if (e.PropertyName != nameof(Path)) return;
-            Settings.Path = Path;
+            switch (e.PropertyName)
+            {
+                case nameof(Path):
+                    Settings.Path = Path;
+                    break;
+                case nameof(Gtapath):
+                    Settings.GTAPath = Gtapath;
+                    break;
+            }
         };
     }
 
@@ -27,8 +31,14 @@ public partial class MainPageViewModel:PageViewModel
     {
         Globals.InvokeFixPage(this, type);
     }
+    
     public void ChangeToRestoreBackupPage()
     {
         Globals.InvokeBackupPage(this);
+    }
+    
+    public void LoadGta()
+    {
+        GTA.Load();
     }
 }

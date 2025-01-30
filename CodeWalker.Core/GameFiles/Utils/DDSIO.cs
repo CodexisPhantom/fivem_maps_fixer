@@ -2504,8 +2504,7 @@ namespace CodeWalker.Utils
 
         private static void ConvertRgb565ToRgb888(ushort color, out byte r, out byte g, out byte b)
         {
-            int temp;
-            temp = (color >> 11) * 255 + 16;
+            int temp = (color >> 11) * 255 + 16;
             r = (byte)((temp / 32 + temp) / 32);
             temp = ((color & 0x07E0) >> 5) * 255 + 32;
             g = (byte)((temp / 64 + temp) / 64);
@@ -2516,8 +2515,7 @@ namespace CodeWalker.Utils
         private static void ConvertBgra5551ToRgba8(ushort color, out byte r, out byte g, out byte b, out byte a)
         {
             //added by dexy
-            int temp;
-            temp = ((color >> 11) & 0x1F) * 255 + 16;
+            int temp = ((color >> 11) & 0x1F) * 255 + 16;
             r = (byte)((temp / 32 + temp) / 32);
             temp = ((color >> 6) & 0x1F) * 255 + 32;
             g = (byte)((temp / 32 + temp) / 32);

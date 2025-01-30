@@ -281,7 +281,7 @@ namespace CodeWalker.World
                         if (!nodedict.ContainsKey(new MetaHash(entry.ShortNameHash)))
                         {
                             //non-cached ymap. mostly only mods... but some interesting test things also
-                            YmapFile ymap = GameFileCache.RpfMan.GetFile<YmapFile>(entry);
+                            YmapFile ymap = RpfManager.GetFile<YmapFile>(entry);
                             if (ymap != null)
                             {
                                 MapDataStoreNode dsn = new MapDataStoreNode(ymap);
@@ -308,7 +308,7 @@ namespace CodeWalker.World
                             {
                                 //exterior ybn's that aren't already cached... only noncached modded bounds hit here...
                                 //load the ybn and cache its extents.
-                                YbnFile ybn = GameFileCache.RpfMan.GetFile<YbnFile>(entry);
+                                YbnFile ybn = RpfManager.GetFile<YbnFile>(entry);
                                 BoundsStoreItem item = new BoundsStoreItem(ybn.Bounds);
                                 item.Name = ehash;
                                 SpaceBoundsKey key = new SpaceBoundsKey(ehash, item.Min);
@@ -388,7 +388,7 @@ namespace CodeWalker.World
                     RpfFileEntry fentry = null;
                     if (yndentries.TryGetValue(fnhash, out fentry))
                     {
-                        cell.Ynd = rpfman.GetFile<YndFile>(fentry);
+                        cell.Ynd = RpfManager.GetFile<YndFile>(fentry);
                         cell.Ynd.BBMin = corner + (cellsize * new Vector3(x, y, 0));
                         cell.Ynd.BBMax = cell.Ynd.BBMin + cellsize;
                         cell.Ynd.CellX = x;

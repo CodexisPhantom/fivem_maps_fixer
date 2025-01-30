@@ -2,6 +2,6 @@ namespace FivemMapsFixer.Models;
 
 public static class Settings
 {
-    public static string Path { get; set; } = "/media/Pgm/Download";
-    public static string ApiNameUrl => "https://joaat.sh/j/convert";
+    public static string GTAPath { get; set; } = "D:\\secondary game\\Rockstar\\Grand Theft Auto V";
+    public static string Path { get; set; } = "D:\\Projects\\GTAV\\FIVEM\\LocalServers\\servers\\starlingrp\\resources\\[streamings]\\[test]";
 }

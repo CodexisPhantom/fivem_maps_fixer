@@ -15,18 +15,18 @@
 
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="11.0.2"/>
-        <PackageReference Include="Avalonia.Desktop" Version="11.0.2"/>
-        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.2"/>
-        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.2"/>
+        <PackageReference Include="Avalonia" Version="11.2.3" />
+        <PackageReference Include="Avalonia.Desktop" Version="11.2.3" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.3" />
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.3" />
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.2"/>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
-        <PackageReference Include="Costura.Fody" Version="6.0.0-beta0000">
+        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.2.3" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+        <PackageReference Include="Costura.Fody" Version="6.0.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Magick.NET-Q8-AnyCPU" Version="14.2.0" />
+        <PackageReference Include="Magick.NET-Q8-AnyCPU" Version="14.4.0" />
     </ItemGroup>
 
 
@@ -74,5 +74,8 @@
     <ItemGroup>
       <UpToDateCheckInput Remove="Assets\Tests\principal.ymap.xml" />
       <UpToDateCheckInput Remove="Assets\Tests\secondary.ymap.xml" />
+      <UpToDateCheckInput Remove="Views\Pages\Ymaps\CleanEntitiesPageView.axaml" />
+      <UpToDateCheckInput Remove="Views\Pages\Ymaps\CleanLodLightsPageView.axaml" />
+      <UpToDateCheckInput Remove="Views\Pages\Ymaps\CleanOcclusionsPageView.axaml" />
     </ItemGroup>
 </Project>

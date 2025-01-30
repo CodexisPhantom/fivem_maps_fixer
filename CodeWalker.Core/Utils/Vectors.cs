@@ -51,8 +51,7 @@ namespace CodeWalker
 
         public static int CompareTo(this Vector3 a, Vector3 b)
         {
-            int c;
-            c = a.X.CompareTo(b.X); if (c != 0) return c;
+            int c = a.X.CompareTo(b.X); if (c != 0) return c;
             c = a.Y.CompareTo(b.Y); if (c != 0) return c;
             c = a.Z.CompareTo(b.Z); if (c != 0) return c;
             return 0;

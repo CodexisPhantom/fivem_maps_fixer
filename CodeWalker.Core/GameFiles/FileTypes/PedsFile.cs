@@ -81,11 +81,9 @@ namespace CodeWalker.GameFiles
 
         public CPedModelInfo__InitDataList(XmlNode node)
         {
-            XmlNodeList items;
-
             residentTxd = Xml.GetChildInnerText(node, "residentTxd");
 
-            items = node.SelectSingleNode("residentAnims")?.SelectNodes("Item");
+            var items = node.SelectSingleNode("residentAnims")?.SelectNodes("Item");
             if (items?.Count > 0)
             {
                 residentAnims = new string[items.Count];

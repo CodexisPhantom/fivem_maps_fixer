@@ -5317,7 +5317,7 @@ namespace CodeWalker.GameFiles
 
             Dictionary<string, Color> dic = new Dictionary<string,Color>();
             string filename2 = "common.rpf\\data\\effects\\materialfx.dat";
-            string txt2 = rpfman.GetFileUTF8Text(filename2);
+            string txt2 = rpfman.GetFileUtf8Text(filename2);
             AddMaterialfxDat(txt2, dic);
 
             ColourDict = dic;
@@ -5328,7 +5328,7 @@ namespace CodeWalker.GameFiles
             {
                 filename = "update\\update.rpf\\common\\data\\materials\\materials.dat";
             }
-            string txt = rpfman.GetFileUTF8Text(filename);
+            string txt = rpfman.GetFileUtf8Text(filename);
             AddMaterialsDat(txt, list);
 
             Materials = list;

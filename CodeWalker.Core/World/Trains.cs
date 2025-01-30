@@ -123,7 +123,7 @@ namespace CodeWalker.World
             brakingDist = Xml.GetFloatAttribute(node, "brakingDist");
 
             RpfFileEntry = gameFileCache.RpfMan.GetEntry(filename) as RpfFileEntry;
-            NodesString = gameFileCache.RpfMan.GetFileUTF8Text(filename);
+            NodesString = gameFileCache.RpfMan.GetFileUtf8Text(filename);
             SetNameFromFilename();
             FilePath = Name;
 

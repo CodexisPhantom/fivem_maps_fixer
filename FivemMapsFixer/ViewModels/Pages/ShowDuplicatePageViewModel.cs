@@ -1,10 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using FivemMapsFixer.Models;
 using FivemMapsFixer.Models.Ymaps;
-using FivemMapsFixer.Models.Ytd;
 
 namespace FivemMapsFixer.ViewModels.Pages;
 
@@ -30,18 +30,11 @@ public class ShowDuplicatePageViewModel:PageViewModel
             case FileType.Ymap:
                 FindYmapsIssues();
                 break;
-            case FileType.Ytd:
-                FindYtdsIssues();
-                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
-
-    private void FindYtdsIssues()
-    {
-        List<YtdIssue> duplicates = IssueFinder.FindOversizedYtds(Settings.Path);
-        Conflicts = new ObservableCollection<Issue>(duplicates);
-    }
-
+    
     private void FindYmapsIssues()
     {
         if(!Directory.Exists(Settings.Path)){return;}
@@ -51,11 +44,6 @@ public class ShowDuplicatePageViewModel:PageViewModel
         
         foreach (YmapIssue duplicate in duplicates.ToList())
         {
-            if(duplicate.YmapFilesPath[0].Contains("lodlights") && !duplicate.YmapFilesPath[0].Contains("distlodlights"))
-            {
-                duplicates.Remove(duplicate);
-                continue;
-            }
             duplicate.Ended += (_,_) =>
             {
                 Conflicts.Remove(duplicate);

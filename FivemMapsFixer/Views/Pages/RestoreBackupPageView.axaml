@@ -55,7 +55,6 @@
                                     Background="Chartreuse"
                                     Command="{Binding RestoreBackup}">Restore Backup</Button>
                             </Grid>
-                                
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

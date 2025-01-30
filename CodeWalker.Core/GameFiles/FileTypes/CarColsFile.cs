@@ -100,8 +100,7 @@ namespace CodeWalker.GameFiles
             //< Item /> < !--VWT_SUPERMOD1-- >
             //< Item >  < !--VWT_SUPERMOD2-- >
 
-            XmlNode cnode;
-            cnode = node.SelectSingleNode("VehiclePlates");
+            var cnode = node.SelectSingleNode("VehiclePlates");
             if (cnode != null)
             {
                 VehiclePlates = new CVehicleModelInfoVarGlobal_465922034(cnode);
@@ -372,8 +371,7 @@ namespace CodeWalker.GameFiles
         public vehicleLightSettings(XmlNode node)
         {
             id = (byte)Xml.GetChildIntAttribute(node, "id", "value");
-            XmlNode cnode;
-            cnode = node.SelectSingleNode("indicator");
+            var cnode = node.SelectSingleNode("indicator");
             if (cnode != null)
             {
                 indicator = new vehicleLight(cnode);
@@ -523,8 +521,7 @@ namespace CodeWalker.GameFiles
             lightOffset = Xml.GetChildFloatAttribute(node, "lightOffset", "value");
             textureName = XmlMeta.GetHash(Xml.GetChildInnerText(node, "textureName"));
             sequencerBpm = Xml.GetChildUIntAttribute(node, "sequencerBpm", "value");
-            XmlNode cnode;
-            cnode = node.SelectSingleNode("leftHeadLight");
+            var cnode = node.SelectSingleNode("leftHeadLight");
             if (cnode != null)
             {
                 leftHeadLight = new sirenSettings_188820339(cnode);
@@ -596,8 +593,7 @@ namespace CodeWalker.GameFiles
 
         public sirenLight(XmlNode node)
         {
-            XmlNode cnode;
-            cnode = node.SelectSingleNode("rotation");
+            var cnode = node.SelectSingleNode("rotation");
             if (cnode != null)
             {
                 rotation = new sirenLight_1356743507(cnode);
@@ -678,8 +674,7 @@ namespace CodeWalker.GameFiles
             kitName = XmlMeta.GetHash(Xml.GetChildInnerText(node, "kitName"));
             id = (ushort)Xml.GetChildUIntAttribute(node, "id", "value");
             kitType = Xml.GetChildEnumInnerText<eModKitType>(node, "kitType");
-            XmlNode cnode;
-            cnode = node.SelectSingleNode("visibleMods");
+            var cnode = node.SelectSingleNode("visibleMods");
             if (cnode != null)
             {
                 XmlNodeList items = cnode.SelectNodes("Item");
@@ -791,8 +786,7 @@ namespace CodeWalker.GameFiles
         {
             modelName = XmlMeta.GetHash(Xml.GetChildInnerText(node, "modelName"));
             modShopLabel = Xml.GetChildInnerText(node, "modShopLabel");
-            XmlNode cnode;
-            cnode = node.SelectSingleNode("linkedModels");
+            var cnode = node.SelectSingleNode("linkedModels");
             if (cnode != null)
             {
                 XmlNodeList items = cnode.SelectNodes("Item");

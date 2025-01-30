@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace FivemMapsFixer.Models;
@@ -21,8 +22,7 @@ public class Backup:ObservableObject
         foreach (string backup in YmapFilesPath)
         {
             string file = backup.Replace(".backup", "");
-            File.Delete(file);
-            File.Move(backup, file);
+            File.Move(backup, file, true);
         }
         Ended?.Invoke(this, EventArgs.Empty);
     }

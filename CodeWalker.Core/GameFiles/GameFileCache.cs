@@ -1072,7 +1072,7 @@ namespace CodeWalker.GameFiles
                         try
                         {
                             UpdateStatus(string.Format(entry.Path));
-                            YmfFile ymffile = RpfMan.GetFile<YmfFile>(entry);
+                            YmfFile ymffile = RpfManager.GetFile<YmfFile>(entry);
                             if (ymffile != null)
                             {
                                 AllManifests.Add(ymffile);
@@ -1146,7 +1146,7 @@ namespace CodeWalker.GameFiles
                         {
                             if ((entry.NameLower == "gtxd.ymt") || (entry.NameLower == "gtxd.meta") || (entry.NameLower == "mph4_gtxd.ymt"))
                             {
-                                GtxdFile ymt = RpfMan.GetFile<GtxdFile>(entry);
+                                GtxdFile ymt = RpfManager.GetFile<GtxdFile>(entry);
                                 if (ymt.TxdRelationships != null)
                                 {
                                     addTxdRelationships(ymt.TxdRelationships);
@@ -1154,7 +1154,7 @@ namespace CodeWalker.GameFiles
                             }
                             else if (entry.NameLower == "vehicles.meta")
                             {
-                                VehiclesFile vf = RpfMan.GetFile<VehiclesFile>(entry);//could also get loaded in InitVehicles...
+                                VehiclesFile vf = RpfManager.GetFile<VehiclesFile>(entry);//could also get loaded in InitVehicles...
                                 if (vf.TxdRelationships != null)
                                 {
                                     addTxdRelationships(vf.TxdRelationships);
@@ -1310,7 +1310,7 @@ namespace CodeWalker.GameFiles
         private void AddYtypToDictionary(RpfEntry entry)
         {
             UpdateStatus(string.Format(entry.Path));
-            YtypFile ytypfile = RpfMan.GetFile<YtypFile>(entry);
+            YtypFile ytypfile = RpfManager.GetFile<YtypFile>(entry);
             if (ytypfile == null)
             {
                 throw new Exception("Couldn't load ytyp file."); //couldn't load the file for some reason... shouldn't happen..
@@ -1397,7 +1397,7 @@ namespace CodeWalker.GameFiles
 
                             if (DoFullStringIndex)
                             {
-                                Gxt2File gxt2 = RpfMan.GetFile<Gxt2File>(entry);
+                                Gxt2File gxt2 = RpfManager.GetFile<Gxt2File>(entry);
                                 if (gxt2 != null)
                                 {
                                     for (int i = 0; i < gxt2.TextEntries.Length; i++)
@@ -1516,7 +1516,7 @@ namespace CodeWalker.GameFiles
                         {
                             if (entry.NameLower == "vehicles.meta")
                             {
-                                VehiclesFile vf = RpfMan.GetFile<VehiclesFile>(entry);
+                                VehiclesFile vf = RpfManager.GetFile<VehiclesFile>(entry);
                                 if (vf.InitDatas != null)
                                 {
                                     foreach (VehicleInitData initData in vf.InitDatas)
@@ -1531,21 +1531,21 @@ namespace CodeWalker.GameFiles
                             }
                             if ((entry.NameLower == "carcols.ymt") || (entry.NameLower == "carcols.meta"))
                             {
-                                CarColsFile cf = RpfMan.GetFile<CarColsFile>(entry);
+                                CarColsFile cf = RpfManager.GetFile<CarColsFile>(entry);
                                 if (cf.VehicleModelInfo != null)
                                 { }
                                 allCarCols.Add(cf);
                             }
                             if (entry.NameLower == "carmodcols.ymt")
                             {
-                                CarModColsFile cf = RpfMan.GetFile<CarModColsFile>(entry);
+                                CarModColsFile cf = RpfManager.GetFile<CarModColsFile>(entry);
                                 if (cf.VehicleModColours != null)
                                 { }
                                 allCarModCols.Add(cf);
                             }
                             if ((entry.NameLower == "carvariations.ymt") || (entry.NameLower == "carvariations.meta"))
                             {
-                                CarVariationsFile cf = RpfMan.GetFile<CarVariationsFile>(entry);
+                                CarVariationsFile cf = RpfManager.GetFile<CarVariationsFile>(entry);
                                 if (cf.VehicleModelInfo?.variationData != null)
                                 {
                                     foreach (CVehicleModelInfoVariation_418053801 variation in cf.VehicleModelInfo.variationData)
@@ -1559,7 +1559,7 @@ namespace CodeWalker.GameFiles
                             }
                             if (entry.NameLower.StartsWith("vehiclelayouts") && entry.NameLower.EndsWith(".meta"))
                             {
-                                VehicleLayoutsFile lf = RpfMan.GetFile<VehicleLayoutsFile>(entry);
+                                VehicleLayoutsFile lf = RpfManager.GetFile<VehicleLayoutsFile>(entry);
                                 if (lf.Xml != null)
                                 { }
                                 allVehicleLayouts.Add(lf);
@@ -1697,7 +1697,7 @@ namespace CodeWalker.GameFiles
                         {
                             if ((entry.NameLower == "peds.ymt") || (entry.NameLower == "peds.meta"))
                             {
-                                PedsFile pf = RpfMan.GetFile<PedsFile>(entry);
+                                PedsFile pf = RpfManager.GetFile<PedsFile>(entry);
                                 if (pf.InitDataList?.InitDatas != null)
                                 {
                                     foreach (CPedModelInfo__InitData initData in pf.InitDataList.InitDatas)
@@ -1740,7 +1740,7 @@ namespace CodeWalker.GameFiles
                                 uint testhash = JenkHash.GenHash(testname);
                                 if (allPeds.ContainsKey(testhash))
                                 {
-                                    PedFile pf = RpfMan.GetFile<PedFile>(entry);
+                                    PedFile pf = RpfManager.GetFile<PedFile>(entry);
                                     if (pf != null)
                                     {
                                         allPedYmts[testhash] = pf;
@@ -1851,7 +1851,7 @@ namespace CodeWalker.GameFiles
 
             foreach (RpfFileEntry datrelentry in datrelentries.Values)
             {
-                RelFile relfile = RpfMan.GetFile<RelFile>(datrelentry);
+                RelFile relfile = RpfManager.GetFile<RelFile>(datrelentry);
                 if (relfile == null) continue;
 
                 audioDatRelFiles.Add(relfile);
@@ -2469,7 +2469,7 @@ namespace CodeWalker.GameFiles
             RpfFileEntry entry = file.RpfFileEntry;
             if (entry != null)
             {
-                return RpfMan.LoadFile(file, entry);
+                return RpfManager.LoadFile(file, entry);
             }
             return false;
         }
@@ -2865,7 +2865,7 @@ namespace CodeWalker.GameFiles
                         UpdateStatus(string.Format(entry.Path));
 
                         RelFile rel = new RelFile(rfe);
-                        RpfMan.LoadFile(rel, rfe);
+                        RpfManager.LoadFile(rel, rfe);
 
 
 
@@ -3101,7 +3101,7 @@ namespace CodeWalker.GameFiles
                         if (n.EndsWith(".awc"))
                         {
                             UpdateStatus(string.Format(entry.Path));
-                            AwcFile awcfile = RpfMan.GetFile<AwcFile>(entry);
+                            AwcFile awcfile = RpfManager.GetFile<AwcFile>(entry);
                             if (awcfile != null)
                             { }
                         }
@@ -3386,7 +3386,7 @@ namespace CodeWalker.GameFiles
                             UpdateStatus(string.Format(entry.Path));
 
                             CutFile cut = new CutFile(rfe);
-                            RpfMan.LoadFile(cut, rfe);
+                            RpfManager.LoadFile(cut, rfe);
 
                             //PsoTypes.EnsurePsoTypes(cut.Pso);
                         }
@@ -3423,7 +3423,7 @@ namespace CodeWalker.GameFiles
                             UpdateStatus(string.Format(entry.Path));
 
                             YldFile yld = new YldFile(rfe);
-                            RpfMan.LoadFile(yld, rfe);
+                            RpfManager.LoadFile(yld, rfe);
 
                         }
                     }
@@ -3457,7 +3457,7 @@ namespace CodeWalker.GameFiles
                             UpdateStatus(string.Format(entry.Path));
 
                             YedFile yed = new YedFile(rfe);
-                            RpfMan.LoadFile(yed, rfe);
+                            RpfManager.LoadFile(yed, rfe);
 
                             if (xmltest)
                             {
@@ -3498,7 +3498,7 @@ namespace CodeWalker.GameFiles
                     if (entry.NameLower.EndsWith(".ycd"))
                     {
                         UpdateStatus(string.Format(entry.Path));
-                        YcdFile ycd1 = RpfMan.GetFile<YcdFile>(entry);
+                        YcdFile ycd1 = RpfManager.GetFile<YcdFile>(entry);
                         if (ycd1 == null)
                         {
                             errorentries.Add(entry);
@@ -3770,7 +3770,7 @@ namespace CodeWalker.GameFiles
                             YtdFile ytdfile = null;
                             try
                             {
-                                ytdfile = RpfMan.GetFile<YtdFile>(entry);
+                                ytdfile = RpfManager.GetFile<YtdFile>(entry);
                             }
                             catch(Exception ex)
                             {
@@ -3865,7 +3865,7 @@ namespace CodeWalker.GameFiles
                             YbnFile ybn = null;
                             try
                             {
-                                ybn = RpfMan.GetFile<YbnFile>(entry);
+                                ybn = RpfManager.GetFile<YbnFile>(entry);
                             }
                             catch (Exception ex)
                             {
@@ -4035,7 +4035,7 @@ namespace CodeWalker.GameFiles
                             YdrFile ydr = null;
                             try
                             {
-                                ydr = RpfMan.GetFile<YdrFile>(entry);
+                                ydr = RpfManager.GetFile<YdrFile>(entry);
                             }
                             catch (Exception ex)
                             {
@@ -4092,7 +4092,7 @@ namespace CodeWalker.GameFiles
                             YddFile ydd = null;
                             try
                             {
-                                ydd = RpfMan.GetFile<YddFile>(entry);
+                                ydd = RpfManager.GetFile<YddFile>(entry);
                             }
                             catch (Exception ex)
                             {
@@ -4161,7 +4161,7 @@ namespace CodeWalker.GameFiles
                             YftFile yft = null;
                             try
                             {
-                                yft = RpfMan.GetFile<YftFile>(entry);
+                                yft = RpfManager.GetFile<YftFile>(entry);
                             }
                             catch (Exception ex)
                             {
@@ -4244,7 +4244,7 @@ namespace CodeWalker.GameFiles
                             YptFile ypt = null;
                             try
                             {
-                                ypt = RpfMan.GetFile<YptFile>(entry);
+                                ypt = RpfManager.GetFile<YptFile>(entry);
                             }
                             catch (Exception ex)
                             {
@@ -4300,7 +4300,7 @@ namespace CodeWalker.GameFiles
                             YnvFile ynv = null;
                             try
                             {
-                                ynv = RpfMan.GetFile<YnvFile>(entry);
+                                ynv = RpfManager.GetFile<YnvFile>(entry);
                             }
                             catch (Exception ex)
                             {
@@ -4378,7 +4378,7 @@ namespace CodeWalker.GameFiles
                             UpdateStatus(string.Format(entry.Path));
 
                             YvrFile yvr = new YvrFile(rfe);
-                            RpfMan.LoadFile(yvr, rfe);
+                            RpfManager.LoadFile(yvr, rfe);
 
                             string xml = YvrXml.GetXml(yvr);
                             YvrFile yvr2 = XmlYvr.GetYvr(xml);
@@ -4421,7 +4421,7 @@ namespace CodeWalker.GameFiles
                             UpdateStatus(string.Format(entry.Path));
 
                             YwrFile ywr = new YwrFile(rfe);
-                            RpfMan.LoadFile(ywr, rfe);
+                            RpfManager.LoadFile(ywr, rfe);
 
                             string xml = YwrXml.GetXml(ywr);
                             YwrFile ywr2 = XmlYwr.GetYwr(xml);
@@ -4456,7 +4456,7 @@ namespace CodeWalker.GameFiles
                         if (entry.NameLower.EndsWith(".ymap"))
                         {
                             UpdateStatus(string.Format(entry.Path));
-                            YmapFile ymapfile = RpfMan.GetFile<YmapFile>(entry);
+                            YmapFile ymapfile = RpfManager.GetFile<YmapFile>(entry);
                             if ((ymapfile != null))// && (ymapfile.Meta != null))
                             { }
                         }
@@ -4482,7 +4482,7 @@ namespace CodeWalker.GameFiles
                         if (rfe.NameLower.EndsWith(".ypdb"))
                         {
                             UpdateStatus(string.Format(entry.Path));
-                            YpdbFile ypdb = RpfMan.GetFile<YpdbFile>(entry);
+                            YpdbFile ypdb = RpfManager.GetFile<YpdbFile>(entry);
                             if (ypdb != null)
                             {
                                 byte[] odata = entry.File.ExtractFile(entry as RpfFileEntry);
@@ -4529,7 +4529,7 @@ namespace CodeWalker.GameFiles
                         if (rfe.NameLower.EndsWith(".yfd"))
                         {
                             UpdateStatus(string.Format(entry.Path));
-                            YfdFile yfd = RpfMan.GetFile<YfdFile>(entry);
+                            YfdFile yfd = RpfManager.GetFile<YfdFile>(entry);
                             if (yfd != null)
                             {
                                 if (yfd.FrameFilterDictionary != null)
@@ -4574,7 +4574,7 @@ namespace CodeWalker.GameFiles
                         if (entry.NameLower.EndsWith(".mrf"))
                         {
                             UpdateStatus(string.Format(entry.Path));
-                            MrfFile mrffile = RpfMan.GetFile<MrfFile>(entry);
+                            MrfFile mrffile = RpfManager.GetFile<MrfFile>(entry);
                             if (mrffile != null)
                             { 
                                 byte[] odata = entry.File.ExtractFile(entry as RpfFileEntry);
@@ -4742,7 +4742,7 @@ namespace CodeWalker.GameFiles
                         if (entry.NameLower.EndsWith(".fxc"))
                         {
                             UpdateStatus(string.Format(entry.Path));
-                            FxcFile fxcfile = RpfMan.GetFile<FxcFile>(entry);
+                            FxcFile fxcfile = RpfManager.GetFile<FxcFile>(entry);
                             if (fxcfile != null)
                             {
                                 byte[] odata = entry.File.ExtractFile(entry as RpfFileEntry);
@@ -4953,7 +4953,7 @@ namespace CodeWalker.GameFiles
                         if (doydr && entry.NameLower.EndsWith(".ydr"))
                         {
                             UpdateStatus(entry.Path);
-                            YdrFile ydr = RpfMan.GetFile<YdrFile>(entry);
+                            YdrFile ydr = RpfManager.GetFile<YdrFile>(entry);
 
                             if (ydr == null)
                             {
@@ -4982,7 +4982,7 @@ namespace CodeWalker.GameFiles
                         else if (doydd & entry.NameLower.EndsWith(".ydd"))
                         {
                             UpdateStatus(entry.Path);
-                            YddFile ydd = RpfMan.GetFile<YddFile>(entry);
+                            YddFile ydd = RpfManager.GetFile<YddFile>(entry);
 
                             if (ydd == null)
                             {
@@ -5014,7 +5014,7 @@ namespace CodeWalker.GameFiles
                         else if (doyft && entry.NameLower.EndsWith(".yft"))
                         {
                             UpdateStatus(entry.Path);
-                            YftFile yft = RpfMan.GetFile<YftFile>(entry);
+                            YftFile yft = RpfManager.GetFile<YftFile>(entry);
 
                             if (yft == null)
                             {
@@ -5155,7 +5155,7 @@ namespace CodeWalker.GameFiles
                         if (entry.NameLower.EndsWith("cache_y.dat"))// || entry.NameLower.EndsWith("cache_y_bank.dat"))
                         {
                             UpdateStatus(string.Format(entry.Path));
-                            CacheDatFile cdfile = RpfMan.GetFile<CacheDatFile>(entry);
+                            CacheDatFile cdfile = RpfManager.GetFile<CacheDatFile>(entry);
                             if (cdfile != null)
                             {
                                 byte[] odata = entry.File.ExtractFile(entry as RpfFileEntry);
@@ -5198,7 +5198,7 @@ namespace CodeWalker.GameFiles
                     {
                         UpdateStatus(string.Format(entry.Path));
                         HeightmapFile hmf = null;
-                        hmf = RpfMan.GetFile<HeightmapFile>(entry);
+                        hmf = RpfManager.GetFile<HeightmapFile>(entry);
                         byte[] d1 = hmf.RawFileData;
                         //var d2 = hmf.Save();
                         string xml = HmapXml.GetXml(hmf);
@@ -5233,7 +5233,7 @@ namespace CodeWalker.GameFiles
                     {
                         UpdateStatus(string.Format(entry.Path));
                         WatermapFile wmf = null;
-                        wmf = RpfMan.GetFile<WatermapFile>(entry);
+                        wmf = RpfManager.GetFile<WatermapFile>(entry);
                         //var d1 = wmf.RawFileData;
                         //var d2 = wmf.Save();
                         //var xml = WatermapXml.GetXml(wmf);
@@ -5299,7 +5299,7 @@ namespace CodeWalker.GameFiles
                         if (doydr && entry.NameLower.EndsWith(".ydr"))
                         {
                             UpdateStatus(entry.Path);
-                            YdrFile ydr = RpfMan.GetFile<YdrFile>(entry);
+                            YdrFile ydr = RpfManager.GetFile<YdrFile>(entry);
 
                             if (ydr == null) { continue; }
                             if (ydr.Drawable == null) { continue; }
@@ -5308,7 +5308,7 @@ namespace CodeWalker.GameFiles
                         else if (doydd & entry.NameLower.EndsWith(".ydd"))
                         {
                             UpdateStatus(entry.Path);
-                            YddFile ydd = RpfMan.GetFile<YddFile>(entry);
+                            YddFile ydd = RpfManager.GetFile<YddFile>(entry);
 
                             if (ydd == null) { continue; }
                             if (ydd.Dict == null) { continue; }
@@ -5320,7 +5320,7 @@ namespace CodeWalker.GameFiles
                         else if (doyft && entry.NameLower.EndsWith(".yft"))
                         {
                             UpdateStatus(entry.Path);
-                            YftFile yft = RpfMan.GetFile<YftFile>(entry);
+                            YftFile yft = RpfManager.GetFile<YftFile>(entry);
 
                             if (yft == null) { continue; }
                             if (yft.Fragment == null) { continue; }
@@ -5346,7 +5346,7 @@ namespace CodeWalker.GameFiles
                         else if (doypt && entry.NameLower.EndsWith(".ypt"))
                         {
                             UpdateStatus(entry.Path);
-                            YptFile ypt = RpfMan.GetFile<YptFile>(entry);
+                            YptFile ypt = RpfManager.GetFile<YptFile>(entry);
 
                             if (ypt == null) { continue; }
                             if (ypt.DrawableDict == null) { continue; }

@@ -1,5 +1,9 @@
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using CodeWalker.GameFiles;
+using FivemMapsFixer.Tools;
 
 namespace FivemMapsFixer.Models.Ymaps;
 
@@ -15,16 +19,22 @@ public abstract class YmapActions:FileActions
         return ymap;
     }
     
-    public static void SaveFile(YmapIssue ymapIssue)
+    public static void CreateBackup(List<YmapFile> files)
     {
-        YmapFile? ymap = ymapIssue.Files[0] as YmapFile;
-        ymap?.CalcExtents();
-        ymap?.CalcFlags();
-        foreach (string file in ymapIssue.YmapFilesPath)
+        foreach (string path in files.Select(file => file.FilePath))
         {
-            if (!File.Exists(file+".backup")) File.Move(file, file+".backup");
+            if(!File.Exists(path + ".backup")) File.Copy(path, path + ".backup");
+            Logger.Log(LogSeverity.INFO, LogType.YMAP, $"Backup created for {path}");
         }
-        byte[]? data = ymap?.Save();
-        File.WriteAllBytes(ymapIssue.YmapFilesPath[0],data);
+    }
+    
+    public static void SaveFile(YmapFile file, string path)
+    {
+        file.CalcExtents();
+        file.CalcFlags();
+        byte[]? data = file.Save();
+        File.Create(path).Close();
+        if (data != null) File.WriteAllBytes(path, data);
+        Logger.Log(LogSeverity.INFO, LogType.YMAP, $"File saved to {path}");
     }
 }

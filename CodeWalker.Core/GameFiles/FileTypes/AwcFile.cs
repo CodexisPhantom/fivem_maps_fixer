@@ -47,9 +47,9 @@ namespace CodeWalker.GameFiles
             Buffer.BlockCopy(data, 0, blocks, 0, data.Length);
 
             int block_count = blocks.Length;
-            uint a, b = blocks[0], i;
+            uint a, b = blocks[0];
 
-            i = (uint)(0x9E3779B9 * (6 + 52 / block_count));
+            uint i = (uint)(0x9E3779B9 * (6 + 52 / block_count));
             do
             {
                 for (int block_index = block_count - 1; block_index >= 0; --block_index)

@@ -9,7 +9,7 @@
              x:DataType="pages:MainPageViewModel">
     <Grid
         Margin="15"
-        RowDefinitions="*,10,*,10,Auto"
+        RowDefinitions="*,10,Auto,10,Auto,10,Auto"
         ColumnDefinitions="*">
         <StackPanel
             Grid.Row="0"
@@ -24,40 +24,34 @@
                 VerticalContentAlignment="Center"
                 Command="{Binding ChangeToFixPage}"
                 CommandParameter="{Binding Ymaps}">
-                FIX YMAPs
+                Merge Ymaps
             </Button>
-            <Button 
+            <Button
                 Width="200"
                 Height="150"
+                HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
-                Command="{Binding ChangeToFixPage}"
-                CommandParameter="{Binding Ymts}">
-                FIX Ytds
-            </Button>
-            <Button 
-                Width="200"
-                Height="150"
-                HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center"
-                Command="{Binding ChangeToFixPage}"
-                CommandParameter="{Binding Ytds}">
-                FIX Ytds
+                Command="{Binding ChangeToRestoreBackupPage}">
+                Restore Backups
             </Button>
         </StackPanel>
-        <Button
+        <TextBox
             Grid.Row="2"
-            Width="200"
-            Height="150"
-            HorizontalAlignment="Stretch"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Command="{Binding ChangeToRestoreBackupPage}">
-            Restore Backups
-        </Button>
+            Grid.Column="0"
+            Text="{Binding Gtapath}" />
         <TextBox
             Grid.Row="4"
             Grid.Column="0"
             Text="{Binding Path}" />
+        <Button
+            Grid.Row="6"
+            Grid.Column="0"
+            HorizontalAlignment="Stretch"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Command="{Binding LoadGta}">
+            Load GTA
+        </Button>
     </Grid>
 </UserControl>

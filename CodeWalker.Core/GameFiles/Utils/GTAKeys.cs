@@ -1,33 +1,4 @@
-﻿/*
-    Copyright(c) 2015 Neodymium
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-    THE SOFTWARE.
-*/
-
-/*
-   This file contains only SHA1 hashes of all interesting values. There is NO key.
-*/
-
-
-//shamelessly stolen
-
-using CodeWalker.Core.Properties;
+﻿using CodeWalker.Core.Properties;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -64,9 +35,7 @@ namespace CodeWalker.GameFiles
 
 
         public static uint[] PC_AWC_KEY; // 16
-
-
-
+        
         public static void Generate(byte[] exeData, Action<string> updateStatus) //Stream exeStr)// 
         {
             MemoryStream exeStr = new MemoryStream(exeData);
@@ -256,9 +225,7 @@ namespace CodeWalker.GameFiles
             {
                 PC_AES_KEY = Convert.FromBase64String(key);
             }
-            //GenerateMagicData();
-
-
+            
             Random rnd = new Random((int)JenkHash.GenHash(PC_AES_KEY));
             byte[] m = Resources.magic;
             int dbl = m.Length;
@@ -313,17 +280,14 @@ namespace CodeWalker.GameFiles
 
 
     }
-
-
-
-
+    
     public static class GTA5KeyHashes
     {
         // aes decryption/encryption key...
-        public static byte[] PC_AES_KEY_HASH = new byte[] { 0xA0, 0x79, 0x61, 0x28, 0xA7, 0x75, 0x72, 0x0A, 0xC2, 0x04, 0xD9, 0x81, 0x9F, 0x68, 0xC1, 0x72, 0xE3, 0x95, 0x2C, 0x6D };
+        public static byte[] PC_AES_KEY_HASH = { 0xA0, 0x79, 0x61, 0x28, 0xA7, 0x75, 0x72, 0x0A, 0xC2, 0x04, 0xD9, 0x81, 0x9F, 0x68, 0xC1, 0x72, 0xE3, 0x95, 0x2C, 0x6D };
 
         // ng decryption/encryption expanded keys...
-        public static byte[][] PC_NG_KEY_HASHES = new byte[101][] {
+        public static byte[][] PC_NG_KEY_HASHES = {
             new byte[] { 0xEB, 0x09, 0x15, 0x12, 0x03, 0x97, 0xCE, 0x2E, 0x17, 0x82, 0x8D, 0xD7, 0x7E, 0x32, 0x18, 0xD9, 0x77, 0xA1, 0x85, 0xF7 },
             new byte[] { 0xD7, 0x40, 0xB3, 0xC8, 0x9F, 0xE3, 0xA1, 0x9A, 0x92, 0x65, 0xDC, 0xEE, 0xFB, 0x45, 0x4C, 0x16, 0x2D, 0xB4, 0x53, 0x68 },
             new byte[] { 0x85, 0xF4, 0x3E, 0x5B, 0xAB, 0x4A, 0xBC, 0xAD, 0x76, 0xD8, 0x07, 0x15, 0xBB, 0x39, 0x32, 0xE9, 0xE7, 0xEC, 0xC5, 0xE2 },
@@ -427,7 +391,7 @@ namespace CodeWalker.GameFiles
             new byte[] { 0xB3, 0x9B, 0x96, 0xD9, 0x78, 0xE3, 0xF5, 0xC5, 0xB7, 0x6B, 0x12, 0x07, 0xC8, 0xAA, 0x1D, 0xB1, 0x4C, 0x85, 0x38, 0x39 }};
 
         // ng decryption tables...
-        public static byte[][] PC_NG_DECRYPT_TABLE_HASHES = new byte[][] {
+        public static byte[][] PC_NG_DECRYPT_TABLE_HASHES = {
             new byte[] { 0xCE, 0xAB, 0x97, 0x16, 0xBD, 0xEC, 0x4E, 0xB6, 0xB0, 0x28, 0xD3, 0x56, 0x39, 0xE4, 0x5F, 0x2F, 0x3D, 0x8A, 0xC0, 0x3A },
             new byte[] { 0x61, 0x86, 0x8D, 0xFD, 0xF3, 0x86, 0x92, 0xB0, 0xC0, 0x71, 0xF6, 0xB1, 0xC8, 0x09, 0x67, 0x41, 0x22, 0xD4, 0xB3, 0x03 },
             new byte[] { 0xBD, 0x28, 0x5F, 0x22, 0xD5, 0x7C, 0x53, 0xEB, 0x15, 0xC7, 0x28, 0x30, 0x11, 0x2C, 0xD8, 0x0B, 0xF9, 0xDB, 0x0D, 0xC1 },
@@ -702,7 +666,7 @@ namespace CodeWalker.GameFiles
             new byte[] { 0x43, 0x23, 0xB0, 0xAA, 0x5F, 0x01, 0x51, 0x74, 0x89, 0x04, 0xA4, 0xB2, 0xC4, 0x03, 0x3D, 0x5E, 0x9A, 0xF0, 0x1D, 0xBB }};
 
         // hash lookup-table...
-        public static byte[] PC_LUT_HASH = new byte[] { 0x88, 0xD3, 0x79, 0x3B, 0x8E, 0x7A, 0x6C, 0xAC, 0xAA, 0x8B, 0x89, 0x28, 0x97, 0xBE, 0x72, 0x8D, 0x9E, 0x7F, 0xBA, 0xD4 };
+        public static byte[] PC_LUT_HASH = { 0x88, 0xD3, 0x79, 0x3B, 0x8E, 0x7A, 0x6C, 0xAC, 0xAA, 0x8B, 0x89, 0x28, 0x97, 0xBE, 0x72, 0x8D, 0x9E, 0x7F, 0xBA, 0xD4 };
     }
 
 
@@ -829,7 +793,7 @@ namespace CodeWalker.GameFiles
             int inByte0, int inByte1, int inByte2, int inByte3,
             int outByte, int outBit)
         {
-            uint[] noKey = new uint[] { 0, 0, 0, 0 };
+            uint[] noKey = { 0, 0, 0, 0 };
             Random random = new Random();
 
             List<RandomGaussRow> pivots = new List<RandomGaussRow>();
@@ -1149,12 +1113,10 @@ namespace CodeWalker.GameFiles
     {
         public static byte[][] ReadNgKeys(string fileName)
         {
-            byte[][] result;
-
             FileStream fs = new FileStream(fileName, FileMode.Open);
             DataReader rd = new DataReader(fs);
 
-            result = new byte[101][];
+            byte[][] result = new byte[101][];
             for (int i = 0; i < 101; i++)
             {
                 result[i] = rd.ReadBytes(272);
@@ -1166,11 +1128,9 @@ namespace CodeWalker.GameFiles
         }
         public static byte[][] ReadNgKeys(byte[] data)
         {
-            byte[][] result;
-
             DataReader rd = new DataReader(new MemoryStream(data));
 
-            result = new byte[101][];
+            byte[][] result = new byte[101][];
             for (int i = 0; i < 101; i++)
             {
                 result[i] = rd.ReadBytes(272);
@@ -1204,13 +1164,11 @@ namespace CodeWalker.GameFiles
 
         public static uint[][][] ReadNgTables(string fileName)
         {
-            uint[][][] result;
-
             FileStream fs = new FileStream(fileName, FileMode.Open);
             DataReader rd = new DataReader(fs);
 
             // 17 rounds...
-            result = new uint[17][][];
+            uint[][][] result = new uint[17][][];
             for (int i = 0; i < 17; i++)
             {
                 // 16 bytes...
@@ -1232,12 +1190,10 @@ namespace CodeWalker.GameFiles
         }
         public static uint[][][] ReadNgTables(byte[] data)
         {
-            uint[][][] result;
-
             DataReader rd = new DataReader(new MemoryStream(data));
 
             // 17 rounds...
-            result = new uint[17][][];
+            uint[][][] result = new uint[17][][];
             for (int i = 0; i < 17; i++)
             {
                 // 16 bytes...
@@ -1271,7 +1227,6 @@ namespace CodeWalker.GameFiles
                 // 16 bytes...
                 for (int j = 0; j < 16; j++)
                 {
-                    // 256 entries...
                     for (int k = 0; k < 256; k++)
                     {
                         wr.Write(tableData[i][j][k]);
@@ -1279,8 +1234,6 @@ namespace CodeWalker.GameFiles
                 }
             }
 
-            //fs.Close();
-
             using (FileStream fs = new FileStream(fileName, FileMode.Create))
             {
                 ms.Position = 0;
@@ -1288,137 +1241,22 @@ namespace CodeWalker.GameFiles
             }
         }
 
-        public static GTA5NGLUT[][] ReadNgLuts(string fileName)
-        {
-            GTA5NGLUT[][] result;
-
-            FileStream fs = new FileStream(fileName, FileMode.Open);
-            DataReader rd = new DataReader(fs);
-
-            // 17 rounds...
-            result = new GTA5NGLUT[17][];
-            for (int i = 0; i < 17; i++)
-            {
-                // 16 bytes...
-                result[i] = new GTA5NGLUT[16];
-                for (int j = 0; j < 16; j++)
-                {
-                    result[i][j] = new GTA5NGLUT();
-
-                    // first compression step (2^32 -> 2^24)
-                    result[i][j].LUT0 = new byte[256][];
-                    for (int k = 0; k < 256; k++)
-                    {
-                        //result[i][j].LUT0[k] = new byte[256];
-                        //for (int l = 0; l < 256; l++)
-                        //    result[i][j].LUT0[k][l] = rd.ReadByte();
-                        result[i][j].LUT0[k] = rd.ReadBytes(256);
-                    }
-
-                    // second compression step (2^24 -> 2^16)
-                    result[i][j].LUT1 = new byte[256][];
-                    for (int k = 0; k < 256; k++)
-                    {
-                        //result[i][j].LUT1[k] = new byte[256];
-                        //for (int l = 0; l < 256; l++)
-                        //    result[i][j].LUT1[k][l] = rd.ReadByte();
-                        result[i][j].LUT1[k] = rd.ReadBytes(256);
-                    }
-
-                    // indices
-                    //result[i][j].Indices = new byte[65536];
-                    //for (int k = 0; k < 65536; k++)
-                    //    result[i][j].Indices[k] = rd.ReadByte();
-                    result[i][j].Indices = rd.ReadBytes(65536);
-                }
-            }
-
-
-            fs.Close();
-
-            return result;
-        }
-        public static GTA5NGLUT[][] ReadNgLuts(byte[] data)
-        {
-            GTA5NGLUT[][] result;
-
-            DataReader rd = new DataReader(new MemoryStream(data));
-
-            // 17 rounds...
-            result = new GTA5NGLUT[17][];
-            for (int i = 0; i < 17; i++)
-            {
-                // 16 bytes...
-                result[i] = new GTA5NGLUT[16];
-                for (int j = 0; j < 16; j++)
-                {
-                    result[i][j] = new GTA5NGLUT();
-
-                    // first compression step (2^32 -> 2^24)
-                    result[i][j].LUT0 = new byte[256][];
-                    for (int k = 0; k < 256; k++)
-                    {
-                        //result[i][j].LUT0[k] = new byte[256];
-                        //for (int l = 0; l < 256; l++)
-                        //    result[i][j].LUT0[k][l] = rd.ReadByte();
-                        result[i][j].LUT0[k] = rd.ReadBytes(256);
-                    }
-
-                    // second compression step (2^24 -> 2^16)
-                    result[i][j].LUT1 = new byte[256][];
-                    for (int k = 0; k < 256; k++)
-                    {
-                        //result[i][j].LUT1[k] = new byte[256];
-                        //for (int l = 0; l < 256; l++)
-                        //    result[i][j].LUT1[k][l] = rd.ReadByte();
-                        result[i][j].LUT1[k] = rd.ReadBytes(256);
-                    }
-
-                    // indices
-                    //result[i][j].Indices = new byte[65536];
-                    //for (int k = 0; k < 65536; k++)
-                    //    result[i][j].Indices[k] = rd.ReadByte();
-                    result[i][j].Indices = rd.ReadBytes(65536);
-                }
-            }
-
-
-            return result;
-        }
-
         public static void WriteLuts(string fileName, GTA5NGLUT[][] lutData)
         {
-            //var fs = new FileStream(fileName, FileMode.Create);
-            //var wr = new DataWriter(fs);
             MemoryStream ms = new MemoryStream();
             DataWriter wr = new DataWriter(ms);
 
-            // 17 rounds...
             for (int i = 0; i < 17; i++)
             {
-                // 16 bytes...
                 for (int j = 0; j < 16; j++)
                 {
                     GTA5NGLUT lut = lutData[i][j];
-
-                    // first compression step (2^32 -> 2^24)
-                    for (int k = 0; k < 256; k++)
-                        for (int l = 0; l < 256; l++)
-                            wr.Write(lut.LUT0[k][l]);
-
-                    // second compression step (2^24 -> 2^16)
-                    for (int k = 0; k < 256; k++)
-                        for (int l = 0; l < 256; l++)
-                            wr.Write(lut.LUT1[k][l]);
-
-                    // indices
-                    for (int k = 0; k < 65536; k++)
-                        wr.Write(lut.Indices[k]);
+                    for (int k = 0; k < 256; k++) for (int l = 0; l < 256; l++) wr.Write(lut.LUT0[k][l]);
+                    for (int k = 0; k < 256; k++) for (int l = 0; l < 256; l++) wr.Write(lut.LUT1[k][l]);
+                    for (int k = 0; k < 65536; k++) wr.Write(lut.Indices[k]);
                 }
             }
-
-            //fs.Close();
-
+            
             using (FileStream fs = new FileStream(fileName, FileMode.Create))
             {
                 ms.Position = 0;
@@ -1426,44 +1264,24 @@ namespace CodeWalker.GameFiles
             }
         }
     }
-
-
-
+    
     public class GTA5Hash
     {
-        public static byte[] LUT;
+        private static byte[] LUT;
 
         static GTA5Hash()
         {
-            // setup constants...
             LUT = GTA5Keys.PC_LUT;
         }
 
         public static uint CalculateHash(string text)
         {
-            /*
-             
-                func CalculateHash(keys Keys, filename string) (result uint32) {
-                    for _, c := range filename {
-                        temp := 1025 * (uint32(keys.hashLookup[int(c)]) + result)
-                        result = (temp >> 6) ^ temp
-                    }
-                    return 32769 * (((9 * result) >> 11) ^ 9*result)
-                }
-
-             */
-
-
             uint result = 0;
-            for (int index = 0; index < text.Length; index++)
+            foreach (uint temp in text.Select(t => 1025 * (LUT[t] + result)))
             {
-                uint temp = 1025 * (LUT[text[index]] + result);
                 result = (temp >> 6) ^ temp;
             }
-
             return 32769 * ((9 * result >> 11) ^ (9 * result));
         }
     }
-
-
 }

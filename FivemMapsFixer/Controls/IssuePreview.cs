@@ -1,3 +1,4 @@
+using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Data;
@@ -55,14 +56,8 @@ public class IssuePreview:Border
                 });
 
                 break;
-            case FileType.Ytd:
-                Child = new YtdPreview();
-                Child.Bind(YtdPreview.IssueProperty, new Binding
-                {
-                    Path = "Issue",
-                    Source = this
-                });
-                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     } 
 }

@@ -9,10 +9,8 @@ namespace CodeWalker.World
     {
         public volatile bool Inited = false;
         public GameFileCache GameFileCache;
-
         public Dictionary<RelFile, AudioPlacement[]> PlacementsDict = new Dictionary<RelFile, AudioPlacement[]>();
-
-
+        
         public void Init(GameFileCache gameFileCache, Action<string> updateStatus)
         {
             Inited = false;

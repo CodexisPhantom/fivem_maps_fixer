@@ -48,7 +48,6 @@ public class YmapPreview:Grid
         
         PropertyChanged += (_, e) =>
         {
-            if(Issue == null){return;}
             if(e.Property != IssueProperty){return;}
             _listBox.Bind(ItemsControl.ItemsSourceProperty, new Binding
             {
@@ -62,7 +61,7 @@ public class YmapPreview:Grid
             });
             _button.Bind(Button.CommandProperty, new Binding
             {
-                Path = "Issue.OpenEntitiesPage",
+                Path = "Issue.FixYmapIssue",
                 Source = this
             });
         };
